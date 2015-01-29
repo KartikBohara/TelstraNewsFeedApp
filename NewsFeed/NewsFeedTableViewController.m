@@ -52,7 +52,7 @@ static NSString * const kCellID = @"NewsFeedTableViewCell";
     [self.view addSubview:activityIndicator];
     [activityIndicator startAnimating];
     
-
+    //Initializing the Refresh COntrol
     
     UIRefreshControl *refreshControl=[[UIRefreshControl alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 100.0f)];
     self.refreshControl=refreshControl;
