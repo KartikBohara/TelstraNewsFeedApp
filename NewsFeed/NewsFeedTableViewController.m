@@ -91,7 +91,7 @@ static NSString * const kCellID = @"NewsFeedTableViewCell";
     
     NSURL *url = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/u/746330/facts.json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSURLConnection *connection = [[[NSURLConnection alloc] initWithRequest:request delegate:self]autorelease];
     [connection start];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

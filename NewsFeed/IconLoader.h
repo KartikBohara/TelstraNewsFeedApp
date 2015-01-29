@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) CountryNewsModel *appRecord;
 @property (nonatomic, strong) NSMutableData *activeDownload;
-@property (nonatomic, strong) NSURLConnection *imageConnection;
+//@property (nonatomic, strong) NSURLConnection *imageConnection;
 @property (nonatomic, copy) void (^completionHandler)(void);
 
 - (void)startDownload;

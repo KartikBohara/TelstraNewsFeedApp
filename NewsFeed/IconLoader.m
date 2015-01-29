@@ -16,7 +16,10 @@
 #pragma mark -
 
 @implementation IconLoader
-@synthesize appRecord, activeDownload, imageConnection;
+{
+    NSURLConnection *conn;
+}
+@synthesize appRecord, activeDownload;
 
 // -------------------------------------------------------------------------------
 //	function to start Download of Image files asynchronously
@@ -29,9 +32,10 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.appRecord.imageHref]];
     
     // allocating & initialising the connection; release on completion/failure
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    self.imageConnection = conn;
+//    imageConnection = conn;
+//    [conn release];
 }
 
 // -------------------------------------------------------------------------------
@@ -40,8 +44,9 @@
 - (void)cancelDownload
 {
     
-    [self.imageConnection cancel];
-    self.imageConnection = nil;
+    [conn cancel];
+    [conn release];
+    conn = nil;
     self.activeDownload = nil;
 }
 
@@ -73,7 +78,8 @@
     self.activeDownload = nil;
     
     // Release the connection now that it's finished
-    self.imageConnection = nil;
+    [conn release];
+    conn = nil;
 }
 
 // -------------------------------------------------------------------------------
@@ -104,6 +110,8 @@
     {
         self.completionHandler();
     }
+    [conn release];
+    conn = nil;
 }
 
 
